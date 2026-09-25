@@ -1,6 +1,6 @@
 # Haunt Firmware
 
-**Haunt** is a custom firmware theme and asset pack for **ESP32 Cheap Yellow Display (CYD)** devices, built on top of the Bruce Firmware ecosystem.
+**Haunt** is a custom theme and UI asset pack for **ESP32 Cheap Yellow Display (CYD)** running Bruce Firmware.
 
 > Status: **Beta**  
 > Built for **Batista**
@@ -9,11 +9,11 @@
 
 ## Features
 
-- Custom **boot animation** with Gengar + progress bar + "Initializing..."
-- Complete **Bruce-compatible theme** (`Haunt.json`)
-- Clean and modern UI screens
-- Consistent icon set
-- Lightweight assets optimized for ESP32
+- Custom boot animation (Gengar + progress bar)
+- Full Bruce-compatible theme (`Haunt.json`)
+- Clean modern UI screen designs
+- Icon set + status icons
+- Lightweight and optimized for ESP32
 
 ---
 
@@ -21,39 +21,45 @@
 
 - Home / Launcher
 - Clock
-- WiFi (network list)
-- Bluetooth (device list)
-- RF Scan (signal visualizer)
-- Storage / SD Card
+- WiFi
+- Bluetooth
+- RF Scan
+- RFID
+- Power / Battery
+- Storage
 - Logs
-- Files
-- Config
-- System
-- About (with Gengar)
+- Network
+- Settings
+- About
+
+---
+
+## Documentation
+
+- **[HANDOFF_TO_SCHEMATIK.md](HANDOFF_TO_SCHEMATIK.md)** ← Full project context + instructions for continuing development
+- [SCREENS.md](SCREENS.md) — Screen list
 
 ---
 
 ## Hardware
 
-- ESP32-2432S028 (Cheap Yellow Display - CYD)
-- 320×240 ILI9341 display
+- ESP32-2432S028 (CYD)
+- 320×240 display
 
 ---
 
 ## Installation
 
-1. Flash **Bruce Firmware** on your CYD
-2. Copy the theme files to the root of your SD card / LittleFS
-3. On the device: `Config → UI Theme → Haunt.json`
-4. Place `boot.gif` at the root (or inside the theme folder)
+1. Flash Bruce Firmware
+2. Copy theme files to SD card / LittleFS root
+3. Select `Haunt.json` in Config → UI Theme
+4. Place `boot.gif` at root or inside theme folder
 
 ---
 
 ## Credits
 
-- Built for **Batista**
-- Inspired by Bruce Firmware
-- Gengar theme
+Built for **Batista**
 
 ---
 
