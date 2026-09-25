@@ -10,12 +10,12 @@
 
 ## 1. What is Haunt?
 
-Haunt is a custom visual theme + UI asset pack for the **ESP32 Cheap Yellow Display (CYD)** running **Bruce Firmware**.
+**Haunt is an independent system** for the ESP32 Cheap Yellow Display (CYD).
 
-It is **not** a full custom firmware from scratch.  
-It is a complete visual layer (boot animation, icons, screens, theme) designed to run on top of Bruce.
+It is **not** an extension or theme pack for Bruce Firmware.  
+It is only **compatible** with Bruce (can reuse some of its structure, boot method, and asset loading ideas), but the goal is a standalone firmware/UI experience owned by Batista.
 
-Goal: Make the CYD feel like a clean, modern, personal device with a consistent identity (Gengar-inspired, dark, readable).
+Goal: Create a clean, personal, independent system for the CYD with its own identity (Gengar-inspired, dark, readable, useful).
 
 ---
 
@@ -23,8 +23,8 @@ Goal: Make the CYD feel like a clean, modern, personal device with a consistent 
 
 - Board: ESP32-2432S028 (Cheap Yellow Display)
 - Display: 320 × 240, ILI9341
-- Base system: Bruce Firmware
-- Storage: SD card or LittleFS for theme assets
+- Independent system (Bruce-compatible where useful)
+- Storage: SD card or LittleFS
 
 ---
 
@@ -32,134 +32,104 @@ Goal: Make the CYD feel like a clean, modern, personal device with a consistent 
 
 ### Boot
 - `boot.gif` — Gengar animation + progress bar + “Initializing...” + “Haunt firmware v0.1”
-- Optimized (low frame count, limited colors, small file size)
+- Optimized for low resource usage
 
-### Theme
-- `Haunt.json` — Bruce-compatible theme file
-- Full set of menu icons (wifi, ble, rf, rfid, files, clock, config, etc.)
+### Visual Assets
+- Icon set (wifi, ble, rf, rfid, files, clock, config, etc.)
 - Status icons (success, error, warning, info)
 - Background
+- Multiple UI screen mockups (320×240)
 
-### UI Screens (mockups / visual references)
-All screens are 320×240 PNG mockups that show the intended look:
-
+### UI Screens (design references)
 - Home / Launcher
 - Clock
-- WiFi (network list)
+- WiFi
 - Bluetooth
-- RF Scan (signal bars)
+- RF Scan
 - RFID
 - Power / Battery
 - Storage
 - Logs
-- Network details
+- Network
 - Settings
-- About (with Gengar + “Built for Batista”)
+- About (“Built for Batista”)
 
 ---
 
 ## 4. Design Rules (Important)
 
-- Keep it **clean and readable**. Avoid heavy purple monochrome.
-- Use dark background (`#0C0C10` range).
-- Purple only as accent, not the dominant color.
-- Prefer clear hierarchy: title → content → status.
-- No bottom navigation bar (user rejected it).
-- No lockscreen (user rejected it).
-- Status bar at the top is acceptable (time + basic icons).
+- Clean and readable. Avoid heavy monochrome purple.
+- Dark background.
+- Purple only as accent.
+- Clear visual hierarchy.
+- No bottom navigation bar (rejected by owner).
+- No lockscreen (rejected by owner).
+- Top status bar is acceptable.
 - Everything must stay lightweight for ESP32.
 
 ---
 
-## 5. What Needs to Be Done Next
+## 5. Important Clarification for Future Development
 
-This project is currently at the **visual/asset stage**. The next steps are:
+Haunt should be developed as an **independent system**.
 
-1. **Turn the mockups into real Bruce-compatible screens or custom app pages**
-   - Either as theme assets or as custom LVGL / Bruce UI pages.
-
-2. **Integrate the boot animation properly**
-   - Ensure `/boot.gif` is loaded correctly on Bruce.
-
-3. **Make the icons and theme fully functional**
-   - Verify all icons in `Haunt.json` load on device.
-
-4. **Optional but valuable**
-   - Real WiFi scan list
-   - Real Bluetooth list
-   - Real RFID read/write flow
-   - Real battery/power info
-   - Simple file browser
-
-5. **Keep performance in mind**
-   - Prefer small PNGs / GIFs
-   - Avoid heavy animations
-   - Target smooth experience on CYD
+Bruce compatibility is a convenience (especially for boot.gif and basic asset loading), not the final architecture.  
+Do not treat Haunt as “just a Bruce theme”. Build it so it can evolve into its own firmware experience.
 
 ---
 
-## 6. How to Continue the Project Well
+## 6. What Needs to Be Done Next
 
-### Recommended approach for Schematik:
+1. Turn the visual mockups into real working screens in the independent system.
+2. Implement proper boot sequence using the existing `boot.gif`.
+3. Build core apps: Home, Clock, About, Settings, Power.
+4. Then implement tool screens (WiFi, Bluetooth, RF, RFID, Storage, Logs).
+5. Keep performance high and UI clean.
 
-- Treat the existing PNG screens as **design references**, not final code.
-- Rebuild the UI using whatever system Bruce currently supports (theme engine, custom screens, or LVGL if available).
-- Keep the same information architecture and visual language.
+---
+
+## 7. How to Continue the Project Well
+
+- Treat current PNG screens as **design references**.
+- Prefer building a clean, independent UI layer.
+- Reuse Bruce ideas only when they help (boot loading, file system, etc.).
 - Prioritize:
-  1. Boot animation working reliably
-  2. Theme icons loading
-  3. Home + Clock + About
-  4. Then the tool screens (WiFi, RFID, RF, etc.)
+  1. Reliable boot animation
+  2. Solid Home + navigation
+  3. Clock / Power / About
+  4. Tool screens
 
-### Style guide summary:
+### Style guide
 - Dark background
 - White / light gray text
-- One accent color (soft purple)
-- Green for success / connected
-- Orange for warnings / active scan
-- Clean cards with rounded corners
-- Minimal decoration
-
----
-
-## 7. File Structure (Current)
-
-```
-Haunt/
-├── README.md
-├── HANDOFF_TO_SCHEMATIK.md      ← this file
-├── SCREENS.md
-├── theme/
-│   ├── Haunt.json
-│   ├── boot.gif
-│   └── *.png (icons)
-└── (UI mockups distributed as zips in conversation)
-```
+- Soft purple as accent
+- Green = success / connected
+- Orange = active / warning
+- Clean cards, rounded corners, minimal decoration
 
 ---
 
 ## 8. Owner Preferences (Batista)
 
-- Does **not** want exaggerated or “invented” features (no lockscreen, no unnecessary nav bars).
-- Prefers clean, useful screens.
+- Wants an **independent system**, not a Bruce extension.
+- Rejects exaggerated or unnecessary features.
+- Prefers clean and useful screens.
 - Dislikes monotonous single-color UIs.
-- Wants the project to feel personal (“Built for Batista”).
-- Always ask before making big directional changes.
+- Personal branding: “Built for Batista”.
+- Always confirm before big directional changes.
 
 ---
 
 ## 9. Success Criteria
 
-A good continuation of Haunt should result in:
-
-- Device boots with the Gengar animation
-- Theme icons appear correctly in Bruce menu
-- At least Home, Clock and About feel native
-- Overall look is clean, dark, and consistent
-- Performance stays acceptable on CYD
+- Device boots with Haunt animation
+- Feels like its own system
+- Clean dark UI
+- Core screens working
+- Good performance on CYD
 
 ---
 
 **End of handoff.**
 
-Schematik: you now have full context to continue the project properly.
+Schematik: Haunt is an independent project. Continue it as such.
