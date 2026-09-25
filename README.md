@@ -2,7 +2,8 @@
 
 **Haunt** is a custom firmware theme and asset pack for **ESP32 Cheap Yellow Display (CYD)** devices, built on top of the Bruce Firmware ecosystem.
 
-> Status: **Beta**
+> Status: **Beta**  
+> Built for **Batista**
 
 ---
 
@@ -10,6 +11,7 @@
 
 - Custom **boot animation** with Gengar + progress bar + "Initializing..."
 - Complete **Bruce-compatible theme** (`Haunt.json`)
+- Polished UI screens (Home, Clock, Files, Config, RF Tools, System, About)
 - Consistent purple / ghost-themed icon set
 - Status icons (success, error, warning, info)
 - Lightweight assets optimized for ESP32
@@ -39,27 +41,21 @@ You can also place it at the root of the SD card as `/boot.gif`.
 
 ---
 
-## Structure
+## UI Screens included
 
-```
-Haunt/
-├── theme/
-│   ├── Haunt.json          # Theme configuration
-│   ├── boot.gif            # Official boot animation
-│   ├── *.png               # Menu icons + status icons
-│   └── background.png
-├── assets/
-│   ├── boot/
-│   └── sprites/
-├── Haunt_Theme_Complete.zip
-└── README.md
-```
+- Home / Launcher
+- Clock + System stats
+- Files browser
+- RF Tools
+- Config
+- System Status
+- About (with Gengar)
 
 ---
 
 ## Credits
 
-- Built for **Senhor Arthur**
+- Built for **Batista**
 - Inspired by Bruce Firmware and Schematik workshop projects
 - Gengar theme
 
